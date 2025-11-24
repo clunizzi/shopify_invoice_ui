@@ -1,0 +1,66 @@
+                  <!-- Checkbox fattura -->
+          <div class="invoice-request">
+            <label for="invoice-checkbox">
+              <input
+                type="checkbox"
+                id="invoice-checkbox"
+                name="attributes[need_invoice]"
+                form="CartDrawer-Form"
+              >
+              {{ 'customloc.fatture.need_invoice' | t }}
+            </label>
+          </div> 
+          
+          <!-- Form fattura -->
+
+
+        <div id="invoice-details-form" class="invoice-details-form" style="display: none; margin-top: 10px;">
+            <div class="campi-fattura">
+              <label for="company-name">{{ 'customloc.fatture.company_name_label' | t }}</label>
+              <input
+                type="text"
+                id="company-name"
+                class="input-fattura"
+                name="attributes[company_name]"
+                placeholder="{{ 'customloc.fatture.company_name_placeholder' | t }}"
+                form="CartDrawer-Form"
+              >
+            </div>
+        
+            <div class="campi-fattura">
+              <label for="vat-number">{{ 'customloc.fatture.vat_number_label' | t }}</label>
+              <input
+                type="text"
+                id="vat-number"
+                class="input-fattura"
+                name="attributes[vat_number]"
+                placeholder="{{ 'customloc.fatture.vat_number_placeholder' | t }}"
+                form="CartDrawer-Form"
+              >
+            </div>
+        
+            <div class="campi-fattura">
+              <label for="sdi-code">{{ 'customloc.fatture.sdi_code_label' | t }}</label>
+              <input
+                type="text"
+                id="sdi-code"
+                class="input-fattura"
+                name="attributes[sdi_code]"
+                placeholder="{{ 'customloc.fatture.sdi_code_placeholder' | t }}"
+                form="CartDrawer-Form"
+              >
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            id="CartDrawer-Checkout"
+            class="btn w-full"
+            name="checkout"
+            form="CartDrawer-Form"
+            {% if cart == empty %}
+              disabled
+            {% endif %}
+          >
+            {{ 'sections.cart.checkout' | t }}
+          </button>
