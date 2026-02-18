@@ -25,14 +25,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const sdiCode     = sdiCodes[0]?.value.trim()     || '';
 
     const attributes = {
-      need_invoice: needInvoice
+      need_invoice: needInvoice,
+      company_name: needInvoice ? companyName : '',
+      vat_number: needInvoice ? vatNumber : '',
+      sdi_code: needInvoice ? sdiCode : ''
     };
-  
-    if (needInvoice) {
-      attributes.company_name = companyName;
-      attributes.vat_number   = vatNumber;
-      attributes.sdi_code     = sdiCode;
-    }
   
     fetch(`${routes.cart_update_url}`, {
       method: 'POST',
@@ -108,6 +105,13 @@ document.addEventListener('DOMContentLoaded', function() {
     checkboxes.forEach(checkbox => {
       checkbox.checked = checked;
     });
+
+    // Se la fattura non serve più, svuota tutti i campi fattura nel DOM.
+    if (!checked) {
+      document.querySelectorAll('#company-name, #vat-number, #sdi-code').forEach(field => {
+        field.value = '';
+      });
+    }
     
     toggleInvoiceForm(checked);
     validateInvoiceFields();
